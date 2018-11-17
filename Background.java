@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cobagui;
+package App;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -27,14 +27,14 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  * @author Asus
  */
 public class Background extends JFrame{
-    public int height = 700;
-    public int width = 1000;
-    Background(){
-        initAll();    
+    SetGet SG= new SetGet();
+
+    Background(int width,int height){
+        initAll(width,height);    
         
     }
     
-    private void initAll(){
+    void initAll(int width,int height){
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setBounds(0,0,width,height);
         setResizable(false);
@@ -42,12 +42,12 @@ public class Background extends JFrame{
         getContentPane().setBackground(Color.black);
         getContentPane().setLayout(null);
         JPanel pn1 = new JPanel();
-        pn1.setBounds(800,0,200, 1000);
+        pn1.setBounds(width-200,0,200, height);
         pn1.setBackground(Color.lightGray);
         add(pn1);
         
         JLabel icon1 = new JLabel();
-        icon1.setIcon(new ImageIcon(resizeImage("D:\\Kuliah\\Semester_3\\PBO\\Untitled-1.png")));
+        icon1.setIcon(new ImageIcon(resizeImage("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\Untitled-11.png")));
         pn1.add(icon1);
         
         

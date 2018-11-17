@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cobagui;
+package App;
 
 import java.awt.Color;
 import java.awt.Image;
@@ -27,11 +27,12 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 public class Home extends JFrame{
     public int height = 700;
     public int width = 1000;
-    Home(){
-        initAll();
+   
+    public Home(){
+        initAll(width,height);
     }
     
-    public void initAll(){
+    public void initAll(int width,int height){
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setBounds(0,0,width,height);
         setResizable(false);
@@ -48,7 +49,7 @@ public class Home extends JFrame{
                 super.mouseClicked(e); //To change body of generated methods, choose Tools | Templates.
                 Home.super.setVisible(false);
                 Home.super.dispose();
-                new Background().setVisible(true);
+                new Background(1000,700).setVisible(true);
             } 
         
         });

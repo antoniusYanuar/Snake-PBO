@@ -7,9 +7,14 @@ package App;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -39,17 +44,36 @@ public class OptionFrame extends JFrame{
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setBounds(100,100,width,height);
         setResizable(false);
-        setTitle("Snake Java");
-        getContentPane().setBackground(Color.lightGray);
+        setTitle("Option");
         getContentPane().setLayout(null);
         
         JPanel pnf = new JPanel();
-        pnf.setBounds(0,0,200, 200);
-        pnf.setBackground(Color.lightGray);
+        pnf.setBounds(0,0,400, 400);
+        pnf.setBackground(Color.getColor("#00FF7F"));
         add(pnf);
         
-        JButton btn3 = new JButton("Save");
-        btn3.setPreferredSize(new Dimension(150, 40));
+        
+        JLabel btn4 = new JLabel("Fullscreen");
+        btn4.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\full.png")));
+        btn4.setBounds(100, 100, 100, 100);
+        btn4.setVisible(true);
+        btn4.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                super.mouseClicked(e);
+                SG.setSwidth(FSwidth);
+                SG.setSheight(FSheight);
+                new Background(SG.getSwidth(),SG.getSheight()).setVisible(true);
+                    
+                
+            }
+        });        
+        
+        
+        JLabel btn3 = new JLabel();
+        btn3.setIcon(new ImageIcon(resizeImage("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\save.png")));
+        btn3.setBounds(100, 350, 300, 200);
+        btn3.setVisible(true);
         btn3.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e){
@@ -58,24 +82,31 @@ public class OptionFrame extends JFrame{
                 OptionFrame.super.dispose();
             }
         });
-        
-        JCheckBox checkbox = new JCheckBox("Fullscreen");
-        JButton btn4 = new JButton("Apply");
-        btn4.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseClicked(MouseEvent e){
-                super.mouseClicked(e);
-                if (checkbox.isSelected()) {
-                    SG.setSwidth(FSwidth);
-                    SG.setSheight(FSheight);
-                    new Background(SG.getSwidth(),SG.getSheight()).setVisible(true);
-                    
-                }
-            }
-        });        
-        
-        pnf.add(checkbox);
         pnf.add(btn4);
         pnf.add(btn3);
+    }
+    
+    private Image resizeImage(String url){
+        Image img1 = null;
+        try{
+            BufferedImage img = ImageIO.read(new File(url));
+            img1 = img.getScaledInstance(200, 100, Image.SCALE_SMOOTH);
+        }catch(IOException ex){
+            ex.printStackTrace(System.err);
+        }
+        
+        return img1;
+    }
+    
+    private Image resizeIcon(String url){
+        Image img1 = null;
+        try{
+            BufferedImage img = ImageIO.read(new File(url));
+            img1 = img.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        }catch(IOException ex){
+            ex.printStackTrace(System.err);
+        }
+        
+        return img1;
     }
 }

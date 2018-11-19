@@ -51,12 +51,7 @@ public class Background extends JFrame{
         getContentPane().setBackground(Color.decode("#228B22"));
         setTitle("Snake Java");
         music();            
-        
-        JLabel icon1 = new JLabel();
-        icon1.setBounds(850, 550, 150, 100);
-        icon1.setIcon(new ImageIcon(resizeImage("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\logo01.png")));
-        add(icon1);
-        
+            
         
         JLabel menu = new JLabel();
         menu.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\menu.png")));

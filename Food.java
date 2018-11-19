@@ -19,11 +19,12 @@ import javax.swing.JLabel;
 public class Food extends JLabel{
     
     int foodS = 20;
-    
+    int score = 10;
     Food(){
     
     }
     
+    @Override
     public void paint(Graphics g){
         
         super.paint(g);

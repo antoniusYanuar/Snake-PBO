@@ -5,20 +5,24 @@
  */
 package App;
 
-import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import sun.audio.AudioData;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+import sun.audio.ContinuousAudioDataStream;
 
 /**
  *
@@ -38,6 +42,7 @@ public class Home extends JFrame{
         setResizable(false);
         setTitle("Snake Java");
         getContentPane().setLayout(null);
+        //music();
         
         JLabel backgroundImg = new JLabel();
         backgroundImg.setIcon(new ImageIcon(resizeBg("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\bg.png")));
@@ -122,9 +127,9 @@ public class Home extends JFrame{
            @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e); //To change body of generated methods, choose Tools | Templates.
+                new Background(1000,700).setVisible(true);
                 Home.super.setVisible(false);
                 Home.super.dispose();
-                new Background(1000,700).setVisible(true);
             } 
         
         });
@@ -175,4 +180,27 @@ public class Home extends JFrame{
         
         return img1;
     }
+    
+    public void music(){
+    
+            AudioPlayer ap =AudioPlayer.player;
+            AudioStream ms;
+            AudioData md;
+            
+            ContinuousAudioDataStream loop = null;
+            
+            try{
+                InputStream test = new FileInputStream("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\music\\go.wav");
+                ms = new AudioStream(test);
+                AudioPlayer.player.start(ms);
+                //md = ms.getData();
+                //loop = new ContinuousAudioDataStream(md);
+            }catch(FileNotFoundException e){
+                System.out.println(e.toString());
+            }catch(IOException err){
+                System.out.println(err.toString());
+            }
+            ap.start(loop);
+    }
+    
 }

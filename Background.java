@@ -3,13 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package App;
-
+package cobagui;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -30,80 +27,70 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  * @author Asus
  */
 public class Background extends JFrame{
-    public int height2 = 700;
-    public int width2 = 1000;
-    
-    public Background(int x, int y){
-        initAll(x, y);       
+    SetGet SG= new SetGet();
+
+    Background(int width,int height){
+        initAll(width,height);    
+        
     }
     
-    void initAll(int width, int height){
+    void initAll(int width,int height){
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setBounds(0,0,width,height);
         setResizable(false);
-        getContentPane().setBackground(Color.decode("#228B22"));
         setTitle("Snake Java");
-                     
+        getContentPane().setBackground(Color.black);
+        getContentPane().setLayout(null);
+        JPanel pn1 = new JPanel();
+        pn1.setBounds(width-200,0,200, height);
+        pn1.setBackground(Color.lightGray);
+        add(pn1);
         
         JLabel icon1 = new JLabel();
-        icon1.setBounds(850, 550, 150, 100);
-        icon1.setIcon(new ImageIcon(resizeImage("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\logo01.png")));
-        add(icon1);
+        icon1.setIcon(new ImageIcon(resizeImage("C:\\Users\\William Johann\\Documents\\NetBeansProjects\\CobaGui2\\Untitled-1.png")));
+        pn1.add(icon1);
         
         
-        JLabel menu = new JLabel();
-        menu.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\menu.png")));
-        menu.setBounds(width2-150, 0, 50, 50);
-        menu.setVisible(true);
-        menu.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                super.mouseEntered(e); //To change body of generated methods, choose Tools | Templates.
-                menu.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\menu2.png")));
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                super.mouseExited(e); //To change body of generated methods, choose Tools | Templates.
-                menu.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\menu.png")));
-            }
-            
+        JButton btn2 = new JButton("Option");
+        btn2.setPreferredSize(new Dimension(150, 40));
+        btn2.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e); //To change body of generated methods, choose Tools | Templates.
-                new Menu().setVisible(true);
+                setVisible(false);
+                new OptionFrame().setVisible(true);
+                
             }
-        });
-        add(menu);
-        
-        JLabel exit = new JLabel();
-        exit.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\no.png")));
-        exit.setBounds(width2-70, 0, 50, 50);
-        exit.setVisible(true);
-        exit.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                super.mouseMoved(e); //To change body of generated methods, choose Tools | Templates.
-                exit.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\no2.png")));
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                super.mouseExited(e); //To change body of generated methods, choose Tools | Templates.
-                exit.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\no.png")));
-            }            
             
+        });
+        pn1.add(btn2);
+        JButton btn3 = new JButton("Leader Board");
+        btn3.setPreferredSize(new Dimension(150, 40));
+        btn3.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
+                super.mouseClicked(e); //To change body of generated methods, choose Tools | Templates.
+                new LeaderBoard().setVisible(true);
+                
+            }
+            
+        });
+        pn1.add(btn3);
+        JButton btn4 = new JButton("Exit");
+        btn4.setPreferredSize(new Dimension(150, 40));
+        btn4.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e); //To change body of generated methods, choose Tools | Templates.
+                JOptionPane.showMessageDialog(rootPane, "Yakin?");
                 Background.super.setVisible(false);
                 Background.super.dispose();
             }
+            
         });
-        add(exit);
+        pn1.add(btn4);
         
-       MainControler c = new MainControler();
-       add(c);
+            
     }
    
     
@@ -111,19 +98,7 @@ public class Background extends JFrame{
         Image img1 = null;
         try{
             BufferedImage img = ImageIO.read(new File(url));
-            img1 = img.getScaledInstance(150, 100, Image.SCALE_SMOOTH);
-        }catch(IOException ex){
-            ex.printStackTrace(System.err);
-        }
-        
-        return img1;
-    }
-    
-    private Image resizeIcon(String url){
-        Image img1 = null;
-        try{
-            BufferedImage img = ImageIO.read(new File(url));
-            img1 = img.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+            img1 = img.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
         }catch(IOException ex){
             ex.printStackTrace(System.err);
         }

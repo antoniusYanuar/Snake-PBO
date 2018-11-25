@@ -5,25 +5,21 @@
  */
 package App;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
+import SnakeDAO.Conn;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.geom.Area;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
-import static javafx.scene.text.Font.font;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -37,13 +33,26 @@ public class MainControler extends JLabel{
     
     public Character sHead = new Character();
     public Food food = new Food();
+    public Obstacle ob = new Obstacle(); 
+    public Conn con = new Conn();
     public Timer sMove = null;
     public Random rand = null;
     public ArrayList<Character> List = new ArrayList();
+    public ArrayList<Obstacle> List2 = new ArrayList();
     public JLabel tscore = new JLabel();
     public JLabel starter = new JLabel();
     public JLabel over = new JLabel();
-    int score;
+    
+    public int score;
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+    Thread t = new Thread(ob);  
 
     public MainControler(){
         InitAll();
@@ -62,6 +71,7 @@ public class MainControler extends JLabel{
         }
         
         ShowFood();
+        showObs();
         add(sHead);
         add(food);
         add(over);
@@ -95,6 +105,17 @@ public class MainControler extends JLabel{
         food.SetPos(posX, posY);
     }
     
+    public void showObs(){
+        
+        ob.setIcon(new ImageIcon(resizeObs("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\obs.png")));
+        ob.setBounds(100, 100, 20, 20);
+        
+        this.add(ob);
+        t.start();
+    }
+    
+    
+    
     public void ChainM(){
         for(int i = List.size()-1;i>0;i--){
                 
@@ -125,6 +146,9 @@ public class MainControler extends JLabel{
         if(sHead.getY()+sHead.size >= H-range){
             return true;
         }
+        if(intersect(sHead, ob)){
+            return true;
+        }
         for(int i = 1; i<List.size(); i++){
             int X = List.get(i).getX();
             int Y = List.get(i).getY();
@@ -133,7 +157,7 @@ public class MainControler extends JLabel{
                 return true;
             }
         }
-        if((food.getX()==sHead.getX()) && (food.getY()==sHead.getY())){
+        if(intersect(sHead, food)){
             Tail();
             ShowFood();
             score += food.score;
@@ -141,13 +165,13 @@ public class MainControler extends JLabel{
             System.out.println(score);
         }
         return false;
-    
+        
     }
     
     public void scoring(int sc){
     
         String scr = "Score : ";
-        tscore.setBounds(10, 0, 100, 50);
+        tscore.setBounds(10, 0, 250, 50);
         tscore.setText(scr+sc);
         tscore.setFont(new Font(scr, Font.BOLD, 20));
         
@@ -163,11 +187,14 @@ public class MainControler extends JLabel{
     }
     
     public void over(){
+        
         String scr = "GAME OVER";
         over.setBounds(320, 200, 400, 100);
         over.setText(scr);
         over.setFont(new Font(scr, Font.BOLD, 50));
-        new PanelOver().setVisible(true);
+        PanelOver po = new PanelOver();
+        po.showScore(score);
+        po.setVisible(true);
         
         JLabel lblRest = new JLabel();
         lblRest.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\restart.png")));
@@ -206,6 +233,24 @@ public class MainControler extends JLabel{
         return img1;
     }
     
+    private Image resizeObs(String url){
+        Image img1 = null;
+        try{
+            BufferedImage img = ImageIO.read(new File(url));
+            img1 = img.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+        }catch(IOException ex){
+            ex.printStackTrace(System.err);
+        }
+        
+        return img1;
+    }
+
+    private boolean intersect(JLabel sHead1, JLabel obj) {
+        Area a1 = new Area(sHead1.getBounds());
+        Area a2 = new Area(obj.getBounds());
+        return a1.intersects(a2.getBounds2D());
+    }
+    
     class Movement implements KeyListener{
 
         @Override
@@ -237,7 +282,6 @@ public class MainControler extends JLabel{
             }
             if(e.getKeyCode()== KeyEvent.VK_ENTER && IsCrash()==false){
                 sMove.start();
-                scoring(score);
                 starter.setVisible(false);
             }
         }
@@ -256,6 +300,7 @@ public class MainControler extends JLabel{
             ChainM();
             if(IsCrash()==true){
                 sMove.stop();
+                t.stop();
                 over();
             }
         }

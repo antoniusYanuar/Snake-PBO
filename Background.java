@@ -8,6 +8,7 @@ package App;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -39,7 +40,6 @@ import sun.audio.ContinuousAudioDataStream;
 public class Background extends JFrame{
     public int height2 = 700;
     public int width2 = 1000;
-    
     public Background(int x, int y){
         initAll(x, y);       
     }

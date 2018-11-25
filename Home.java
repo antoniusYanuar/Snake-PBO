@@ -103,6 +103,7 @@ public class Home extends JFrame{
                 super.mouseClicked(e);
                 Home.super.setVisible(false);
                 Home.super.dispose();
+               
             }
         });
         backgroundImg.add(exit);
@@ -190,7 +191,7 @@ public class Home extends JFrame{
             ContinuousAudioDataStream loop = null;
             
             try{
-                InputStream test = new FileInputStream("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\music\\go.wav");
+                InputStream test = new FileInputStream("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\music\\List BG\\01 Title Screen.wav");
                 ms = new AudioStream(test);
                 AudioPlayer.player.start(ms);
                 //md = ms.getData();
@@ -200,7 +201,7 @@ public class Home extends JFrame{
             }catch(IOException err){
                 System.out.println(err.toString());
             }
-            ap.start(loop);
+             
     }
     
 }

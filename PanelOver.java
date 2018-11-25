@@ -5,7 +5,7 @@
  */
 package pbo.snake;
 
-import SnakeDAO.Conn;
+import pbo.snake.Conn;
 import pbo.snake.User;
 import java.awt.Font;
 import java.awt.Image;

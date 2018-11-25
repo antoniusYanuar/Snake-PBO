@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package App;
+package pbo.snake;
 
 
 import java.awt.Color;
@@ -54,20 +54,20 @@ public class Background extends JFrame{
             
         
         JLabel menu = new JLabel();
-        menu.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\menu.png")));
+        menu.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\PBO Snake\\src\\pbo\\snake\\img\\menu.png")));
         menu.setBounds(width2-150, 0, 50, 50);
         menu.setVisible(true);
         menu.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e); //To change body of generated methods, choose Tools | Templates.
-                menu.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\menu2.png")));
+                menu.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\PBO Snake\\src\\pbo\\snake\\img\\menu2.png")));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e); //To change body of generated methods, choose Tools | Templates.
-                menu.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\menu.png")));
+                menu.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\PBO Snake\\src\\pbo\\snake\\img\\menu.png")));
             }
             
             @Override
@@ -79,20 +79,20 @@ public class Background extends JFrame{
         add(menu);
         
         JLabel exit = new JLabel();
-        exit.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\no.png")));
+        exit.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\PBO Snake\\src\\pbo\\snake\\img\\no.png")));
         exit.setBounds(width2-70, 0, 50, 50);
         exit.setVisible(true);
         exit.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseMoved(e); //To change body of generated methods, choose Tools | Templates.
-                exit.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\no2.png")));
+                exit.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\PBO Snake\\src\\pbo\\snake\\img\\no2.png")));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e); //To change body of generated methods, choose Tools | Templates.
-                exit.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\no.png")));
+                exit.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\PBO Snake\\src\\pbo\\snake\\img\\no.png")));
             }            
             
             @Override
@@ -141,7 +141,7 @@ public class Background extends JFrame{
             ContinuousAudioDataStream loop = null;
             
             try{
-                InputStream test = new FileInputStream("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\music\\go.wav");
+                InputStream test = new FileInputStream("D:\\Kuliah\\Semester_3\\Prak PBO\\PBO Snake\\src\\pbo\\snake\\music\\go.wav");
                 ms = new AudioStream(test);
                 AudioPlayer.player.start(ms);
                 //md = ms.getData();

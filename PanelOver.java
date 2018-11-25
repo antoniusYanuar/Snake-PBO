@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package App;
+package pbo.snake;
 
 import SnakeDAO.Conn;
-import SnakeDAO.User;
+import pbo.snake.User;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.List;
@@ -52,20 +52,20 @@ public class PanelOver extends JFrame{
         
                 
         JLabel lblClose = new JLabel();
-        lblClose.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\no.png")));
+        lblClose.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\PBO Snake\\src\\pbo\\snake\\img\\no.png")));
         lblClose.setBounds(320, 300, 50, 50);
         lblClose.setVisible(true);
         lblClose.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseMoved(e); //To change body of generated methods, choose Tools | Templates.
-                lblClose.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\no2.png")));
+                lblClose.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\PBO Snake\\src\\pbo\\snake\\img\\no2.png")));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e); //To change body of generated methods, choose Tools | Templates.
-                lblClose.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\no.png")));
+                lblClose.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\PBO Snake\\src\\pbo\\snake\\img\\no.png")));
             }            
             
             @Override
@@ -79,20 +79,20 @@ public class PanelOver extends JFrame{
         add(lblClose);
         
         JLabel lblSave = new JLabel();
-        lblSave.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\save.png")));
+        lblSave.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\PBO Snake\\src\\pbo\\snake\\img\\save.png")));
         lblSave.setBounds(250, 300, 50, 50);
         lblSave.setVisible(true);
         lblSave.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseMoved(e); //To change body of generated methods, choose Tools | Templates.
-                lblSave.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\save2.png")));
+                lblSave.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\PBO Snake\\src\\pbo\\snake\\img\\save2.png")));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e); //To change body of generated methods, choose Tools | Templates.
-                lblSave.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\save.png")));
+                lblSave.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\PBO Snake\\src\\pbo\\snake\\img\\save.png")));
             }            
             
             @Override
@@ -104,26 +104,26 @@ public class PanelOver extends JFrame{
         add(lblSave);
         
         JLabel lblLead = new JLabel();
-        lblLead.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\leaderBoard.png")));
+        lblLead.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\PBO Snake\\src\\pbo\\snake\\img\\leaderBoard.png")));
         lblLead.setBounds(180, 300, 50, 50);
         lblLead.setVisible(true);
         lblLead.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseMoved(e); //To change body of generated methods, choose Tools | Templates.
-                lblLead.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\leaderBoard2.png")));
+                lblLead.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\PBO Snake\\src\\pbo\\snake\\img\\leaderBoard2.png")));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e); //To change body of generated methods, choose Tools | Templates.
-                lblLead.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\leaderBoard.png")));
+                lblLead.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\PBO Snake\\src\\pbo\\snake\\img\\leaderBoard.png")));
             }            
             
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                showLead(conn.lead());
+                //showLead(conn.lead());
                 
             }
 

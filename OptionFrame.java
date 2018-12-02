@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pbo.snake;
+package App;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -16,8 +16,6 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -33,7 +31,6 @@ public class OptionFrame extends JFrame{
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     int FSwidth = (int) screenSize.getWidth();
     int FSheight = (int) screenSize.getHeight();
-
     SetGet SG= new SetGet();
     
     OptionFrame(){
@@ -54,7 +51,7 @@ public class OptionFrame extends JFrame{
         
         
         JLabel btn4 = new JLabel("Fullscreen");
-        btn4.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\PBO Snake\\src\\pbo\\snake\\img\\full.png")));
+        btn4.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\full.png")));
         btn4.setBounds(100, 100, 100, 100);
         btn4.setVisible(true);
         btn4.addMouseListener(new MouseAdapter(){
@@ -71,7 +68,7 @@ public class OptionFrame extends JFrame{
         
         
         JLabel btn3 = new JLabel();
-        btn3.setIcon(new ImageIcon(resizeImage("D:\\Kuliah\\Semester_3\\Prak PBO\\PBO Snake\\src\\pbo\\snake\\img\\save.png")));
+        btn3.setIcon(new ImageIcon(resizeImage("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\save.png")));
         btn3.setBounds(100, 350, 300, 200);
         btn3.setVisible(true);
         btn3.addMouseListener(new MouseAdapter(){

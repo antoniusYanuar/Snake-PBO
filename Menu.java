@@ -85,6 +85,32 @@ public class Menu extends JFrame{
             }
         });
         add(sound);
+        JLabel lblLead = new JLabel();
+        lblLead.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\leaderBoard.png")));
+        lblLead.setBounds(width-350, 190, 50, 50);
+        lblLead.setVisible(true);
+        lblLead.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseMoved(e); //To change body of generated methods, choose Tools | Templates.
+                lblLead.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\leaderBoard2.png")));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e); //To change body of generated methods, choose Tools | Templates.
+                lblLead.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\leaderBoard.png")));
+            }            
+            
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                LeaderBoard lb = new LeaderBoard();
+                lb.setVisible(true);
+            }
+
+        });
+        add(lblLead);
     }
     private Image resizeIcon(String url){
         Image img1 = null;

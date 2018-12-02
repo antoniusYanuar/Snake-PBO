@@ -3,12 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pbo.snake;
+package App;
 
-import static com.sun.management.jmx.Trace.isSelected;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -17,12 +14,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import static java.lang.reflect.Array.set;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JRadioButton;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import sun.audio.AudioData;
 import sun.audio.AudioPlayer;
@@ -36,48 +31,51 @@ import sun.audio.ContinuousAudioDataStream;
 public class Home extends JFrame{
     public int height = 700;
     public int width = 1000;
-    public int speed = 0;
-    
+    AudioPlayer ap =AudioPlayer.player;
+    AudioStream ms;
+    AudioData md;
+    ContinuousAudioDataStream loop = null;
+
     public Home(){
         initAll(width,height);
     }
     
     public void initAll(int width,int height){
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setBounds(0,0,width,height);
+        setSize(width,height);
+        setLocationRelativeTo(null);
         setResizable(false);
         setTitle("Snake Java");
         getContentPane().setLayout(null);
-        //music();
+        music();
         
         JLabel backgroundImg = new JLabel();
-        backgroundImg.setIcon(new ImageIcon(resizeBg("D:\\belajar\\prak PBO\\snake\\src\\snakes\\bg.png")));
+        backgroundImg.setIcon(new ImageIcon(resizeBg("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\bg.png")));
         backgroundImg.setBounds(0, 0, width, height);
         backgroundImg.setVisible(true);
         add(backgroundImg);
         
         JLabel mainLogo = new JLabel();
-        mainLogo.setIcon(new ImageIcon(resizeLogo("D:\\belajar\\prak PBO\\snake\\src\\snakes\\logo01.png")));
-        mainLogo.setBounds(300, 100,
-                400, 200);
+        mainLogo.setIcon(new ImageIcon(resizeLogo("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\logo01.png")));
+        mainLogo.setBounds(300, 100, 400, 200);
         mainLogo.setVisible(true);
         backgroundImg.add(mainLogo);
         
         JLabel menu = new JLabel();
-        menu.setIcon(new ImageIcon(resizeIcon("D:\\belajar\\prak PBO\\snake\\src\\snakes\\menu.png")));
+        menu.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\menu.png")));
         menu.setBounds(850, 0, 50, 50);
         menu.setVisible(true);
         menu.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e); //To change body of generated methods, choose Tools | Templates.
-                menu.setIcon(new ImageIcon(resizeIcon("D:\\belajar\\prak PBO\\snake\\src\\snakes\\menu2.png")));
+                menu.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\menu2.png")));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e); //To change body of generated methods, choose Tools | Templates.
-                menu.setIcon(new ImageIcon(resizeIcon("D:\\belajar\\prak PBO\\snake\\src\\snakes\\menu.png")));
+                menu.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\menu.png")));
             }
             
             @Override
@@ -89,20 +87,20 @@ public class Home extends JFrame{
         backgroundImg.add(menu);
         
         JLabel exit = new JLabel();
-        exit.setIcon(new ImageIcon(resizeIcon("D:\\belajar\\prak PBO\\snake\\src\\snakes\\no.png")));
+        exit.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\no.png")));
         exit.setBounds(930, 0, 50, 50);
         exit.setVisible(true);
         exit.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseMoved(e); //To change body of generated methods, choose Tools | Templates.
-                exit.setIcon(new ImageIcon(resizeIcon("D:\\belajar\\prak PBO\\snake\\src\\snakes\\no2.png")));
+                exit.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\no2.png")));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e); //To change body of generated methods, choose Tools | Templates.
-                exit.setIcon(new ImageIcon(resizeIcon("D:\\belajar\\prak PBO\\snake\\src\\snakes\\no.png")));
+                exit.setIcon(new ImageIcon(resizeIcon("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\no.png")));
             }            
             
             @Override
@@ -110,85 +108,32 @@ public class Home extends JFrame{
                 super.mouseClicked(e);
                 Home.super.setVisible(false);
                 Home.super.dispose();
+               
             }
         });
         backgroundImg.add(exit);
-
-                
-        JRadioButton easy = new JRadioButton("easy", false);
-        JRadioButton medium = new JRadioButton("medium", false);
-        JRadioButton hard = new JRadioButton("hard", false);
-        easy.setBounds(300, 500, 100, 40);
-        easy.setVisible(true);
-        
-        
-
-        backgroundImg.add(easy);
-        
-        medium.setBounds(400, 500, 100, 40);
-        medium.setVisible(true);
-
-        backgroundImg.add(medium);
-        
-        hard.setBounds(500, 500, 100, 40);         
-        hard.setVisible(true);
-        
-        backgroundImg.add(hard);
-        
-        
         
         JLabel btnOp = new JLabel();
-        btnOp.setIcon(new ImageIcon(resizeImage("D:\\belajar\\prak PBO\\PBO Snake\\src\\pbo\\snake\\play.png")));
+        btnOp.setIcon(new ImageIcon(resizeImage("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\play.png")));
         btnOp.setBounds(300, 400, 400, 100);
         btnOp.setVisible(true);
         btnOp.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e); //To change body of generated methods, choose Tools | Templates.
-                btnOp.setIcon(new ImageIcon(resizeImage("D:\\belajar\\prak PBO\\snake\\src\\snakes\\play2.png")));
+                btnOp.setIcon(new ImageIcon(resizeImage("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\play2.png")));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e); //To change body of generated methods, choose Tools | Templates.
-                btnOp.setIcon(new ImageIcon(resizeImage("D:\\belajar\\prak PBO\\snake\\src\\snakes\\play.png")));
+                btnOp.setIcon(new ImageIcon(resizeImage("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\img\\play.png")));
             }
             
-            @Override
+           @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e); //To change body of generated methods, choose Tools | Templates.
-                easy.addActionListener(new ActionListener(){
-                public void actionPerformed(ActionEvent e) {
-                if(easy.isSelected()){
-                    easy.setSelected(true);
-                    }
-                }
-                });
-                medium.addActionListener(new ActionListener(){
-                public void actionPerformed(ActionEvent e) {
-                if(medium.isSelected()){
-                    medium.setSelected(true);
-                    }
-                }
-                });
-                hard.addActionListener(new ActionListener(){
-                public void actionPerformed(ActionEvent e) {
-                if(hard.isSelected()){
-                    hard.setSelected(true);
-                    }
-                }
-                });
-                
-                if(easy.isSelected()){
-                    speed=300;
-                    setSpeed(300);
-                }else if(medium.isSelected()==true){
-                    speed=200;
-                }else if(hard.isSelected()==true){
-                    speed=100;
-                }
-               
-                
+                ap.stop(ms);
                 new Background(1000,700).setVisible(true);
                 Home.super.setVisible(false);
                 Home.super.dispose();
@@ -196,6 +141,7 @@ public class Home extends JFrame{
         
         });
         backgroundImg.add(btnOp);
+        
     }
     private Image resizeImage(String url){
         Image img1 = null;
@@ -244,34 +190,19 @@ public class Home extends JFrame{
     
     public void music(){
     
-            AudioPlayer ap =AudioPlayer.player;
-            AudioStream ms;
-            AudioData md;
-            
-            ContinuousAudioDataStream loop = null;
-            
-//            try{
-//                InputStream test = new FileInputStream("D:\\belajar\\prak PBO\\snake\\src\\snakes\\go.wav");
-//                ms = new AudioStream(test);
-//                AudioPlayer.player.start(ms);
-//                //md = ms.getData();
-//                //loop = new ContinuousAudioDataStream(md);
-//            }catch(FileNotFoundException e){
-//                System.out.println(e.toString());
-//            }catch(IOException err){
-//                System.out.println(err.toString());
-//            }
-            ap.start(loop);
+                       
+            try{
+                InputStream test = new FileInputStream("D:\\Kuliah\\Semester_3\\Prak PBO\\CobaGui\\music\\List BG\\01 Title Screen.wav");
+                ms = new AudioStream(test);
+                AudioPlayer.player.start(ms);
+                //md = ms.getData();
+                //loop = new ContinuousAudioDataStream(md);
+            }catch(FileNotFoundException e){
+                System.out.println(e.toString());
+            }catch(IOException err){
+                System.out.println(err.toString());
+            }
+             
     }
-
-    public void setSpeed(int speed) {
-        this.speed = speed;
-    }
-
-    public int getSpeed() {
-        return speed;
-    }
-    
-
     
 }

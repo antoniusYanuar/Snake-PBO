@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pbo.snake;
+package SnakeDAO;
 
 /**
  *
@@ -12,7 +12,16 @@ package pbo.snake;
 public class User {
     public String name;
     public int sco;
+    public int id;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public String getName() {
         return name;
     }

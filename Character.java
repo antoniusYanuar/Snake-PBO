@@ -41,7 +41,7 @@ public class Character extends JLabel{
     
     }
     
-    public void Left(){
+    public void left(){
         //get koordinat
         int posX = getX();
         int posY = getY();
@@ -50,7 +50,7 @@ public class Character extends JLabel{
         setBounds(posX, posY, size, size);
       
     }
-    public void Right(){
+    public void right(){
         //get koordinat
         int posX = getX();
         int posY = getY();
@@ -59,7 +59,7 @@ public class Character extends JLabel{
         setBounds(posX, posY, size, size);
       
     }
-    public void Up(){
+    public void up(){
         //get koordinat
         int posX = getX();
         int posY = getY();
@@ -68,7 +68,7 @@ public class Character extends JLabel{
         setBounds(posX, posY, size, size);
       
     }
-    public void Down(){
+    public void down(){
         //get koordinat
         int posX = getX();
         int posY = getY();
@@ -78,7 +78,7 @@ public class Character extends JLabel{
       
     }
      
-    public Character Char(){
+    public Character charr(){
         
         Character c2 = new Character();
         int x = getX();
@@ -86,23 +86,23 @@ public class Character extends JLabel{
         
         c2.setBounds(x, y, size, size);
         c2.pil = -pil;
-        c2.Select();
+        c2.select();
         c2.pil=pil;
         
         return c2;
         
     }
     
-    public void Select(){
+    public void select(){
     
         if(pil == Choice.left){
-            Left();
+            left();
         }else if(pil == Choice.right){
-                Right();
+                right();
             }else if(pil == Choice.up){
-                    Up();
+                    up();
                 }else if(pil == Choice.down){
-                        Down();
+                        down();
                     }
         
     }
